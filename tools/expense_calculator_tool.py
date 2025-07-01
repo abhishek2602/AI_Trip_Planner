@@ -14,9 +14,14 @@ class CalculatorTool:
         """
 
         @tool
-        def estimate_total_hotel_cost(price_per_night: str, total_days: float) -> float:
+        def estimate_total_hotel_cost(
+            price_per_night: float, total_days: float
+        ) -> float:
             """
-            Estimate the total cost of a hotel stay
+            Estimate the total cost of a hotel stay.
+            Args:
+                price_per_night (float): The cost for one night.
+                total_days (float): The total number of days for the stay.
             """
             return self.calculator.multiply(price_per_night, total_days)
 

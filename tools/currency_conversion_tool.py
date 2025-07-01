@@ -1,5 +1,5 @@
 import os
-from utils.currency_converter import CurrencyConvertter
+from utils.currency_converter import CurrencyConverter
 from typing import List
 from dotenv import load_dotenv
 from langchain.tools import tool
@@ -7,9 +7,12 @@ from langchain.tools import tool
 
 class CurrencyConverterTool:
     def __init__(self):
-        load_dotenv()
         self.api_key = os.getenv("EXCHANGE_RATE_API_KEY")
-        self.currency_service = CurrencyConvertter(api_key=self.api_key)
+        if not self.api_key:
+            raise ValueError(
+                "EXCHANGE_RATE_API_KEY not found in environment variables."
+            )
+        self.currency_service = CurrencyConverter(api_key=self.api_key)
         self.currency_tool_list = self._setup_tools()
 
     def _setup_tools(self) -> List:

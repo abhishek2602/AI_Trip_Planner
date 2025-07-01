@@ -10,7 +10,7 @@ class CurrencyConverter:
         url = f"{self.base_url}/{from_currency}"
         response = requests.get(url)
         if response.status_code != 200:
-            raise Exception("API call failed:", response.json())
+            raise Exception(f"API call failed: {response.json()}")
         rates = response.json()["conversion_rates"]
         if to_currency not in rates:
             raise ValueError(f"{to_currency} not found in exchange rates.")

@@ -1,14 +1,16 @@
 import os
 from typing import List
-from dotenv import load_dotenv
 from utils.weather_info import WeatherForecastTool
 from langchain.tools import tool
 
 
 class WeatherInfoTool:
     def __init__(self):
-        load_dotenv()
         self.api_key = os.getenv("OPENWEATHERMAP_API_KEY")
+        if not self.api_key:
+            raise ValueError(
+                "OPENWEATHERMAP_API_KEY not found in environment variables."
+            )
         self.weather_service = WeatherForecastTool(api_key=self.api_key)
         self.weather_tool_list = self._setup_tools()
 
