@@ -13,7 +13,7 @@ class CurrencyConverterTool:
                 "EXCHANGE_RATE_API_KEY not found in environment variables."
             )
         self.currency_service = CurrencyConverter(api_key=self.api_key)
-        self.currency_tool_list = self._setup_tools()
+        self.currency_converter_tool_list = self._setup_tools()
 
     def _setup_tools(self) -> List:
         """

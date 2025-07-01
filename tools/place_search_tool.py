@@ -7,7 +7,7 @@ from typing import List
 class PlaceSearchTool:
     def __init__(self):
         self.google_api_key = os.getenv("GPLACE_API_KEY")
-        if not self.api_key:
+        if not self.google_api_key:
             raise ValueError("GPLACE_API_KEY not found in environment variables.")
         self.google_places_search = GooglePlaceSearchTool(api_key=self.google_api_key)
         self.tavily_search = TavilyPlaceSearchTool()
